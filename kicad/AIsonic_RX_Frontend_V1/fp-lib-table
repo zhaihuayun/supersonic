@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "AIsonic")(type "KiCad")(uri "${KIPRJMOD}/AIsonic.pretty")(options "")(descr "AIsonic project footprints"))
+)
