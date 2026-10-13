@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="490" viewBox="0 0 1000 490">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fa; }
+      .title { font: 700 22px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #1a1a1a; }
+      .sub { font: 400 13px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #555; }
+      .lbl { font: 600 12px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #222; }
+      .sm { font: 400 11px Consolas, 'Microsoft YaHei', monospace; fill: #333; }
+      .note { font: 400 11px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #666; }
+      .box { fill: #fff; stroke: #2c3e50; stroke-width: 1.5; }
+      .box-tx { fill: #fff5eb; stroke: #c05621; stroke-width: 1.8; }
+      .box-rx { fill: #ebf8ff; stroke: #2b6cb0; stroke-width: 1.8; }
+      .box-mcu { fill: #f0fff4; stroke: #276749; stroke-width: 1.8; }
+      .wire { stroke: #2d3748; stroke-width: 1.6; fill: none; }
+      .wire-pwr { stroke: #c53030; stroke-width: 1.8; fill: none; }
+      .wire-sig { stroke: #2b6cb0; stroke-width: 1.6; fill: none; }
+      .comp { fill: #fff; stroke: #1a202c; stroke-width: 1.5; }
+      .pin { fill: #edf2f7; stroke: #4a5568; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect class="bg" width="1000" height="490"/>
+  
+  <text class="title" x="30" y="36">主控互联原理图 · STM32H750</text>
+  <text class="sub" x="30" y="56">与 TX / RX 板接口、电源与调试口</text>
+
+  <rect class="box-mcu" x="360" y="100" width="280" height="280" rx="10"/>
+  <text class="lbl" x="430" y="140">STM32H750</text>
+  <text class="sm" x="390" y="170">PA8  TIM1_CH1 → TX PWM</text>
+  <text class="sm" x="390" y="192">PA0  ADC1_IN  ← RX ADC_OUT</text>
+  <text class="sm" x="390" y="214">PA4  DAC1 / PWM → AGC_CTRL</text>
+  <text class="sm" x="390" y="236">USART / USB → PC 调试</text>
+  <text class="sm" x="390" y="258">SPI/SDIO 可选存储</text>
+  <text class="sm" x="390" y="280">3V3 / GND</text>
+  <text class="sm" x="390" y="302">SWD：SWDIO / SWCLK</text>
+  <text class="sm" x="390" y="330">时钟：HSE 可选外晶振</text>
+  <text class="sm" x="390" y="352">供电：3V3 LDO ← 5V/12V</text>
+
+  <rect class="box-tx" x="40" y="140" width="220" height="160" rx="8"/>
+  <text class="lbl" x="90" y="170">TX 板</text>
+  <text class="sm" x="60" y="200">J1.PWM ← PA8</text>
+  <text class="sm" x="60" y="220">J1.GND</text>
+  <text class="sm" x="60" y="240">J2 +12V 独立功率地</text>
+  <text class="sm" x="60" y="260">J3 → TX PZT</text>
+  <text class="sm" x="60" y="280">Burst 由固件控制</text>
+
+  <rect class="box-rx" x="740" y="140" width="220" height="160" rx="8"/>
+  <text class="lbl" x="800" y="170">RX 板</text>
+  <text class="sm" x="760" y="200">ADC_OUT → PA0</text>
+  <text class="sm" x="760" y="220">AGC_CTRL ← PA4</text>
+  <text class="sm" x="760" y="240">3V3 / VREF / GND</text>
+  <text class="sm" x="760" y="260">J1 ← RX PZT</text>
+  <text class="sm" x="760" y="280">模拟地就近单点</text>
+
+  <line class="wire" x1="260" y1="200" x2="360" y2="200"/>
+  <line class="wire" x1="640" y1="200" x2="740" y2="200"/>
+
+  <rect class="box" x="40" y="360" width="920" height="100" rx="6"/>
+  <text class="lbl" x="60" y="390">电源建议</text>
+  <text class="sm" x="60" y="415">12V（TX 功率）与 3.3V（MCU/RX）分开供电路径；共地单点连接，避免大电流经模拟地回流</text>
+  <text class="sm" x="60" y="435">TX 发射瞬间电流大：12V 侧就近大电解 + 陶瓷；MCU 侧磁珠隔离</text>
+  <text class="sm" x="60" y="455">第一版成功标准：水桶测深 ~0.8m → 水池 ~3m → 再湖泊/鱼目标</text>
+
+</svg>

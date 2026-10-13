@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fa; }
+      .title { font: 700 22px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #1a1a1a; }
+      .sub { font: 400 13px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #555; }
+      .lbl { font: 600 12px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #222; }
+      .sm { font: 400 11px Consolas, 'Microsoft YaHei', monospace; fill: #333; }
+      .note { font: 400 11px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #666; }
+      .box { fill: #fff; stroke: #2c3e50; stroke-width: 1.5; }
+      .box-tx { fill: #fff5eb; stroke: #c05621; stroke-width: 1.8; }
+      .box-rx { fill: #ebf8ff; stroke: #2b6cb0; stroke-width: 1.8; }
+      .box-mcu { fill: #f0fff4; stroke: #276749; stroke-width: 1.8; }
+      .wire { stroke: #2d3748; stroke-width: 1.6; fill: none; }
+      .wire-pwr { stroke: #c53030; stroke-width: 1.8; fill: none; }
+      .wire-sig { stroke: #2b6cb0; stroke-width: 1.6; fill: none; }
+      .comp { fill: #fff; stroke: #1a202c; stroke-width: 1.5; }
+      .pin { fill: #edf2f7; stroke: #4a5568; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="520"/>
+  
+  <text class="title" x="30" y="36">RX 接收前端板原理图 · V1.0</text>
+  <text class="sub" x="30" y="56">保护 → LNA(OPA320) → BPF 200kHz → AGC(AD8338) → ADC偏置 → STM32H750 PA0</text>
+
+  <rect class="pin" x="20" y="120" width="80" height="70" rx="4"/>
+  <text class="lbl" x="42" y="145">J1</text>
+  <text class="sm" x="30" y="165">1 RX+</text>
+  <text class="sm" x="30" y="180">2 RX-</text>
+
+  <line class="wire-sig" x1="100" y1="145" x2="150" y2="145"/>
+
+  <rect class="comp" x="150" y="95" width="140" height="120" rx="4"/>
+  <text class="lbl" x="175" y="120">输入保护</text>
+  <text class="sm" x="165" y="142">Cin 100nF 隔直</text>
+  <text class="sm" x="165" y="160">Rser 100Ω</text>
+  <text class="sm" x="165" y="178">D2 BAT54S</text>
+  <text class="sm" x="165" y="196">双向限幅→GND</text>
+
+  <line class="wire-sig" x1="290" y1="145" x2="340" y2="145"/>
+
+  <rect class="comp" x="340" y="85" width="160" height="140" rx="4"/>
+  <text class="lbl" x="380" y="110">U1 OPA320</text>
+  <text class="sm" x="355" y="132">非反相放大</text>
+  <text class="sm" x="355" y="150">Rf=100k Rg=10k</text>
+  <text class="sm" x="355" y="168">G≈11 (~20dB)</text>
+  <text class="sm" x="355" y="186">V+=3.3V</text>
+  <text class="sm" x="355" y="204">偏置 VREF 1.65V</text>
+
+  <line class="wire-sig" x1="500" y1="145" x2="550" y2="145"/>
+
+  <rect class="comp" x="550" y="95" width="150" height="120" rx="4"/>
+  <text class="lbl" x="580" y="120">200kHz BPF</text>
+  <text class="sm" x="565" y="145">二阶有源带通</text>
+  <text class="sm" x="565" y="163">170~230 kHz</text>
+  <text class="sm" x="565" y="181">R 3.3k~5.1k</text>
+  <text class="sm" x="565" y="199">C ≈ 2.2nF</text>
+
+  <line class="wire-sig" x1="700" y1="145" x2="750" y2="145"/>
+
+  <rect class="comp" x="750" y="85" width="150" height="140" rx="4"/>
+  <text class="lbl" x="780" y="110">U2 AD8338</text>
+  <text class="sm" x="765" y="132">VGA 0~80dB</text>
+  <text class="sm" x="765" y="150">工作 20~70dB</text>
+  <text class="sm" x="765" y="168">初值 ~40dB</text>
+  <text class="sm" x="765" y="186">GAIN←DAC/PWM</text>
+  <text class="sm" x="765" y="204">J3 AGC_CTRL</text>
+
+  <line class="wire-sig" x1="900" y1="145" x2="940" y2="145"/>
+
+  <rect class="comp" x="940" y="95" width="150" height="120" rx="4"/>
+  <text class="lbl" x="960" y="120">ADC 驱动</text>
+  <text class="sm" x="955" y="145">隔直 + 偏置</text>
+  <text class="sm" x="955" y="163">中点 1.65V</text>
+  <text class="sm" x="955" y="181">输出 0~3.3V</text>
+  <text class="sm" x="955" y="199">→ PA0 ADC1</text>
+
+  <rect class="box-rx" x="340" y="250" width="280" height="90" rx="6"/>
+  <text class="lbl" x="360" y="275">VREF = 1.65V</text>
+  <text class="sm" x="360" y="295">3.3V — 10k — VREF — 10k — GND</text>
+  <text class="sm" x="360" y="313">或 TLV431 精密基准 · 供 LNA/ADC 偏置</text>
+  <text class="sm" x="360" y="331">交流信号绕 1.65V 摆动</text>
+
+  <rect class="pin" x="650" y="250" width="200" height="90" rx="4"/>
+  <text class="lbl" x="670" y="275">J2 → STM32</text>
+  <text class="sm" x="670" y="295">1 ADC_OUT (PA0)</text>
+  <text class="sm" x="670" y="312">2 VREF · 3 3V3 · 4 GND</text>
+  <text class="sm" x="670" y="329">J3: AGC_CTRL / GND</text>
+
+  <rect class="box" x="20" y="370" width="1070" height="120" rx="6"/>
+  <text class="lbl" x="40" y="398">设计要点</text>
+  <text class="sm" x="40" y="422">· TX 发射时 RX 输入可能泄漏数十 V → 保护二极管必须；发射后等 300us 再采样</text>
+  <text class="sm" x="40" y="442">· 增益勿一级拉满；LNA≈20dB + BPF + AGC 可调，总增益约 60dB 量级</text>
+  <text class="sm" x="40" y="462">· ADC：2MSPS / DMA 2048 点；采样前去直流 → FFT → 峰值测深</text>
+  <text class="sm" x="40" y="482">· PCB：RX 输入远离 TX板 / DC-DC / 蓝牙；磁珠隔离数字与模拟地</text>
+
+</svg>

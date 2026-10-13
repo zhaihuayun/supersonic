@@ -1,0 +1,72 @@
+{
+  "name": "AIsonic_TX_Driver_V1",
+  "owner_uuid": "040970509961cadc924c248e61598682",
+  "creator_uuid": "040970509961cadc924c248e61598682",
+  "created_at": "2026-09-21 16:08:52",
+  "updated_at": "2026-09-21 17:10:10",
+  "modifier_uuid": "040970509961cadc924c248e61598682",
+  "content": "",
+  "archive": false,
+  "cbb_project": 0,
+  "thumb": "",
+  "ticket": 1,
+  "g_ticket": 1,
+  "boards": [],
+  "block_symbol_attrs_groups": {},
+  "default_sheet": "",
+  "branch_uuid": "",
+  "pcb_count": 1,
+  "format": "folder",
+  "profile": {
+    "boards": {
+      "083eb9b33d20cab6": {
+        "uuid": "083eb9b33d20cab6",
+        "title": "Board1",
+        "zIndex": 1
+      }
+    },
+    "schematics": {
+      "86280fe7ba486c13": {
+        "uuid": "86280fe7ba486c13",
+        "name": "Schematic1",
+        "board": "083eb9b33d20cab6",
+        "source": "",
+        "version": "1789978645306",
+        "updateTime": 1789978645306
+      }
+    },
+    "sheets": {
+      "51dc776e9bf34129": {
+        "uuid": "51dc776e9bf34129",
+        "title": "P1",
+        "schematic_uuid": "86280fe7ba486c13",
+        "zIndex": 1,
+        "source": "",
+        "version": "1789978645306",
+        "updateTime": 1789978645306
+      }
+    },
+    "pcbs": {
+      "eaac404584853767": {
+        "uuid": "eaac404584853767",
+        "title": "PCB1",
+        "board": "083eb9b33d20cab6",
+        "parent_uuid": "",
+        "source": "",
+        "version": "1789978132196",
+        "updateTime": 1789978132196
+      }
+    },
+    "panels": {},
+    "blockSymbols": {},
+    "owner": {
+      "uuid": "040970509961cadc924c248e61598682"
+    },
+    "simSchematics": {},
+    "simulations": {}
+  },
+  "config": {
+    "defaultSheet": "",
+    "settings": {}
+  }
+}
